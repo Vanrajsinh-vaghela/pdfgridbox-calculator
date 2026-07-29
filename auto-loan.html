@@ -195,7 +195,11 @@
         .comparison-table td { color: #f1f5f9; }
         .comparison-table tr:last-child td { border-bottom: none; }
 
-        footer { text-align: center; padding: 2rem; color: #94a3b8; font-size: 0.85rem; margin-top: 3rem; font-weight: 800; }
+        /* Footer & Legal Links */
+        footer { text-align: center; padding: 2rem 1rem; background: rgba(12, 8, 6, 0.9); color: #94a3b8; margin-top: 3rem; font-weight: 800; border-top: 1px solid rgba(249, 115, 22, 0.15); font-size: 0.85rem; }
+        .footer-links { margin-bottom: 0.8rem; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .footer-links a { color: #fed7aa; text-decoration: none; font-weight: 800; }
+        .footer-links a:hover { color: #f97316; text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -308,6 +312,12 @@
     </div>
 
     <footer>
+        <div class="footer-links">
+            <a href="about.html">About Us</a> |
+            <a href="privacy-policy.html">Privacy Policy</a> |
+            <a href="disclaimer.html">Disclaimer</a> |
+            <a href="contact-us.html">Contact Us</a>
+        </div>
         <p>&copy; 2026 PDFGridBox. All rights reserved.</p>
     </footer>
 
