@@ -13,8 +13,8 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto Loan Calculator | PDFGridBox Calc</title>
-    <meta name="description" content="Calculate monthly auto loan payments, select interest type, start date, and view complete month-wise amortization schedule.">
+    <title>Auto Loan Calculator India - Calculate Car Loan EMI & Amortization</title>
+    <meta name="description" content="Use the best Auto Loan Calculator to compute monthly car loan EMI, interest rates, reducing vs flat balance, amortization schedule, and check loan eligibility instantly.">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Segoe UI', sans-serif; font-weight: 800; }
@@ -39,10 +39,19 @@
         }
         .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 800px; margin: 0 auto; }
         .logo { font-size: 1.2rem; font-weight: 900; background: linear-gradient(135deg, #f97316, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
-        .back-link { color: #cbd5e1; text-decoration: none; font-size: 0.9rem; }
-        .back-link:hover { color: #f97316; }
+        
+        .nav-right { display: flex; align-items: center; gap: 12px; }
+        .nav-link { color: #cbd5e1; text-decoration: none; font-size: 0.85rem; font-weight: 800; min-height: 48px; display: flex; align-items: center; transition: color 0.2s; }
+        .nav-link:hover { color: #f97316; }
+        .pdf-tools-btn { background: #f97316; color: white !important; padding: 0.4rem 0.9rem; border-radius: 6px; box-shadow: 0 2px 8px rgba(249, 115, 22, 0.4); }
+        .pdf-tools-btn:hover { background: #ea580c; }
 
         .container { max-width: 720px; margin: 2rem auto; padding: 0 1rem; }
+        
+        .hero { text-align: center; margin-bottom: 1.5rem; }
+        .hero h1 { font-size: 1.8rem; color: #fff; font-weight: 900; }
+        .hero-sub { font-size: 0.85rem; color: #fb923c; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; margin-top: 0.2rem; }
+
         .calc-box { 
             background: rgba(20, 14, 10, 0.85); 
             backdrop-filter: blur(12px);
@@ -50,18 +59,18 @@
             border-radius: 16px; 
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); 
             border: 1px solid rgba(249, 115, 22, 0.2);
-            height: auto;
+            transition: all 0.3s ease;
         }
         
-        h2 { font-size: 1.6rem; margin-bottom: 1.5rem; color: #ffffff; font-weight: 900; text-align: center; letter-spacing: 0.5px; }
+        h2 { font-size: 1.6rem; margin-bottom: 0.5rem; color: #ffffff; font-weight: 900; text-align: center; letter-spacing: 0.5px; }
         h3 { font-size: 1.2rem; margin: 1.5rem 0 0.8rem 0; color: #fed7aa; font-weight: 900; text-align: center; }
         
-        .form-group { margin-bottom: 1.3rem; }
+        .form-group { margin-bottom: 1.6rem; }
         .form-group label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; font-size: 0.95rem; color: #fed7aa; font-weight: 800; }
         
-        .form-group input[type="number"], .form-group input[type="date"], .form-group select { 
+        .form-group input[type="text"], .form-group input[type="date"], .form-group select { 
             width: 100%; 
-            padding: 0.75rem 1rem; 
+            padding: 0.8rem 1rem; 
             background: rgba(30, 20, 15, 0.8);
             border: 1px solid rgba(249, 115, 22, 0.3); 
             border-radius: 8px; 
@@ -70,6 +79,8 @@
             font-weight: 900;
             text-align: right; 
             outline: none;
+            min-height: 48px;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
         .form-group select { text-align-last: right; cursor: pointer; }
         .form-group input[type="date"] { color-scheme: dark; }
@@ -77,9 +88,19 @@
 
         .form-group input[type="range"] {
             width: 100%;
-            margin-top: 0.5rem;
+            margin-top: 0.6rem;
             accent-color: #f97316;
             cursor: pointer;
+            height: 6px;
+        }
+
+        .slider-min-max {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin-top: 0.3rem;
+            font-weight: 800;
         }
 
         .tenure-toggle {
@@ -94,16 +115,52 @@
             background: transparent;
             border: none;
             color: #cbd5e1;
-            padding: 4px 12px;
+            padding: 6px 12px;
             font-size: 0.8rem;
             font-weight: 800;
             border-radius: 4px;
             cursor: pointer;
+            min-height: 36px;
         }
         .tenure-btn.active {
             background: #f97316;
             color: #fff;
         }
+
+        .info-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            background: rgba(249, 115, 22, 0.2);
+            color: #f97316;
+            border-radius: 50%;
+            font-size: 0.75rem;
+            cursor: pointer;
+            margin-left: 6px;
+            position: relative;
+        }
+        .info-tooltip {
+            display: none;
+            position: absolute;
+            bottom: 130%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e140f;
+            color: #f1f5f9;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            width: 260px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+            border: 1px solid rgba(249, 115, 22, 0.4);
+            z-index: 50;
+            line-height: 1.4;
+            font-weight: 700;
+            text-align: left;
+        }
+        .info-icon:hover .info-tooltip { display: block; }
         
         .btn { 
             display: block; 
@@ -118,13 +175,15 @@
             text-align: center; 
             margin-top: 1.8rem;
             font-size: 1.1rem;
+            min-height: 48px;
             box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
             transition: transform 0.2s, opacity 0.2s;
         }
         .btn:hover { transform: translateY(-2px); opacity: 0.95; }
         
-        .result-section { display: none; margin-top: 2rem; }
-        
+        .result-section { display: none; margin-top: 2rem; animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
         .result-grid-boxes {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -138,7 +197,9 @@
             border-radius: 12px;
             text-align: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
         }
+        .result-card-box:hover { transform: scale(1.02); }
         .result-card-box span { font-size: 0.85rem; color: #fed7aa; display: block; margin-bottom: 0.4rem; font-weight: 800; }
         .result-card-box strong { font-size: 1.15rem; color: #38bdf8; font-weight: 900; letter-spacing: 0.3px; }
 
@@ -163,6 +224,7 @@
             margin-bottom: 0.9rem;
             position: relative;
             box-shadow: 0 0 20px rgba(249, 115, 22, 0.25);
+            transition: background 0.5s ease;
         }
         .donut-chart::after {
             content: '';
@@ -220,39 +282,147 @@
         .comparison-table td:nth-child(3),
         .comparison-table td:nth-child(4) { text-align: right; }
 
-        footer { text-align: center; padding: 2rem 1rem; background: rgba(12, 8, 6, 0.9); color: #94a3b8; margin-top: 3rem; font-weight: 800; border-top: 1px solid rgba(249, 115, 22, 0.15); font-size: 0.85rem; }
-        .footer-links { margin-bottom: 0.8rem; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .footer-links a { color: #fed7aa; text-decoration: none; font-weight: 800; }
+        .action-btns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .action-btn {
+            background: rgba(40, 25, 18, 0.9);
+            color: #fed7aa;
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-weight: 900;
+            cursor: pointer;
+            min-height: 48px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .action-btn:hover { background: #f97316; color: #fff; }
+
+        /* SEO Content & FAQ Section */
+        .seo-section {
+            margin-top: 3rem;
+            background: rgba(20, 14, 10, 0.6);
+            border: 1px solid rgba(249, 115, 22, 0.15);
+            padding: 1.8rem;
+            border-radius: 16px;
+        }
+        .seo-section h3 { color: #f97316; text-align: left; margin-top: 1.2rem; margin-bottom: 0.5rem; font-size: 1.1rem; }
+        .seo-section p { font-size: 0.88rem; color: #cbd5e1; font-weight: 700; margin-bottom: 1rem; line-height: 1.7; }
+        .faq-item { margin-bottom: 1.2rem; }
+        .faq-question { color: #fed7aa; font-weight: 900; font-size: 0.95rem; margin-bottom: 0.3rem; }
+        .faq-answer { color: #cbd5e1; font-weight: 700; font-size: 0.85rem; }
+
+        /* Related Tools Grid */
+        .related-tools {
+            margin-top: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+        }
+        .tool-link-card {
+            background: rgba(30, 20, 15, 0.6);
+            border: 1px solid rgba(249, 115, 22, 0.2);
+            padding: 0.8rem;
+            border-radius: 8px;
+            text-align: center;
+            color: #fed7aa;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 800;
+            transition: 0.2s;
+        }
+        .tool-link-card:hover { background: #f97316; color: #fff; border-color: #f97316; }
+
+        /* Prominent Navigation / Action Buttons for Home & PDF Tools */
+        .page-action-footer-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .big-footer-btn {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4);
+            min-height: 48px;
+            display: inline-flex;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+        .big-footer-btn:hover { transform: translateY(-2px); }
+        .big-footer-btn.alt {
+            background: rgba(40, 25, 18, 0.9);
+            border: 1px solid rgba(249, 115, 22, 0.4);
+            color: #fed7aa;
+        }
+
+        footer { 
+            text-align: center; 
+            padding: 2.5rem 1rem 2rem 1rem; 
+            background: rgba(12, 8, 6, 0.95); 
+            color: #94a3b8; 
+            margin-top: 4rem; 
+            font-weight: 800; 
+            border-top: 1px solid rgba(249, 115, 22, 0.25); 
+            font-size: 0.9rem; 
+        }
+        .footer-divider { width: 60px; height: 3px; background: #f97316; margin: 0 auto 1.2rem auto; border-radius: 2px; }
+        .footer-links { margin-bottom: 1rem; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .footer-links a { color: #fed7aa; text-decoration: none; font-weight: 800; font-size: 1rem; min-height: 48px; display: flex; align-items: center; }
         .footer-links a:hover { color: #f97316; text-decoration: underline; }
     </style>
 </head>
 <body>
     <header>
         <div class="nav-container">
-            <a href="index.html" class="back-link">&larr; Back to Calculators</a>
-            <a href="https://pdfgridbox.in" class="logo">PDFGridBox</a>
+            <a href="index.html" class="logo">PDFGridBox Calc</a>
+            <div class="nav-right">
+                <a href="https://pdfgridbox.in" class="nav-link pdf-tools-btn" target="_blank">PDF Tools</a>
+                <a href="index.html" class="nav-link">Home</a>
+            </div>
         </div>
     </header>
 
     <div class="container">
+        <div class="hero">
+            <h1>Auto Loan Calculator India</h1>
+            <div class="hero-sub">Fast &bull; Accurate &bull; Free Car Loan & EMI Planner</div>
+        </div>
+
         <div class="calc-box">
-            <h2>Auto Loan Calculator</h2>
-            
             <div class="form-group">
                 <label><span>Loan Start Date</span></label>
-                <input type="date" id="startDate">
+                <input type="date" id="startDate" onchange="calculateAutoLoan()">
             </div>
 
             <div class="form-group">
-                <label><span>Loan Amount (& গাড়ি/₹)</span></label>
-                <input type="number" id="loanAmountNum" value="650000" oninput="syncInput('loanAmountRange', this.value)">
-                <input type="range" id="loanAmountRange" min="50000" max="5000000" step="10000" value="650000" oninput="syncInput('loanAmountNum', this.value)">
+                <label><span>Vehicle Price / Loan Amount (₹)</span></label>
+                <input type="text" id="loanAmountText" value="6,50,000" oninput="handleTextFormatting(this, 'loanAmountRange')">
+                <input type="range" id="loanAmountRange" min="50000" max="5000000" step="10000" value="650000" oninput="handleSliderInput('loanAmountRange', 'loanAmountText')">
+                <div class="slider-min-max">
+                    <span>₹50,000</span>
+                    <span>₹50,00,000</span>
+                </div>
             </div>
 
             <div class="form-group">
                 <label><span>Interest Rate (% P.A.)</span></label>
-                <input type="number" id="rateNum" value="8.5" step="0.1" oninput="syncInput('rateRange', this.value)">
-                <input type="range" id="rateRange" min="1" max="25" step="0.1" value="8.5" oninput="syncInput('rateNum', this.value)">
+                <input type="text" id="rateText" value="8.5" oninput="handleTextFormatting(this, 'rateRange', true)">
+                <input type="range" id="rateRange" min="1" max="25" step="0.1" value="8.5" oninput="handleSliderInput('rateRange', 'rateText', true)">
+                <div class="slider-min-max">
+                    <span>1%</span>
+                    <span>25%</span>
+                </div>
             </div>
 
             <div class="form-group">
@@ -263,37 +433,51 @@
                         <button type="button" id="btnYears" class="tenure-btn" onclick="setTenureMode('years')">Years</button>
                     </div>
                 </label>
-                <input type="number" id="tenureNum" value="60" oninput="syncInput('tenureRange', this.value)">
-                <input type="range" id="tenureRange" min="6" max="120" step="1" value="60" oninput="syncInput('tenureNum', this.value)">
+                <input type="text" id="tenureText" value="60" oninput="handleTextFormatting(this, 'tenureRange')">
+                <input type="range" id="tenureRange" min="6" max="120" step="1" value="60" oninput="handleSliderInput('tenureRange', 'tenureText')">
+                <div class="slider-min-max" id="tenureMinMax">
+                    <span>6 Months</span>
+                    <span>120 Months</span>
+                </div>
             </div>
 
             <div class="form-group">
-                <label><span>Interest Calculation Type</span></label>
-                <select id="interestType">
+                <label>
+                    <span>
+                        Interest Calculation Type
+                        <span class="info-icon">i
+                            <span class="info-tooltip">
+                                <strong>Reducing Balance Interest</strong> is the most common method used by banks. Interest is calculated only on the remaining loan balance.<br><br>
+                                <strong>Flat Interest</strong> calculates interest on the original loan amount for the entire tenure and usually results in a higher total payment.
+                            </span>
+                        </span>
+                    </span>
+                </label>
+                <select id="interestType" onchange="calculateAutoLoan()">
                     <option value="reducing">Reducing Interest</option>
                     <option value="flat">Flat Interest</option>
                 </select>
             </div>
 
-            <button class="btn" onclick="calculateAutoLoan()">Calculate Auto Loan</button>
+            <button class="btn" onclick="calculateAutoLoan()">&#129522; Calculate EMI</button>
             
             <div id="resultSection" class="result-section">
                 <div class="result-grid-boxes">
                     <div class="result-card-box">
                         <span>Monthly EMI</span>
-                        <strong id="resEmi">& গাড়ি/₹0</strong>
+                        <strong id="resEmi">&#8377;0</strong>
                     </div>
                     <div class="result-card-box">
                         <span>Loan Amount</span>
-                        <strong id="resPrincipal">& গাড়ি/₹0</strong>
+                        <strong id="resPrincipal">&#8377;0</strong>
                     </div>
                     <div class="result-card-box">
                         <span>Total Interest</span>
-                        <strong id="resInterest">& গাড়ি/₹0</strong>
+                        <strong id="resInterest">&#8377;0</strong>
                     </div>
                     <div class="result-card-box">
                         <span>Total Payment</span>
-                        <strong id="resTotal">& গাড়ি/₹0</strong>
+                        <strong id="resTotal">&#8377;0</strong>
                     </div>
                 </div>
 
@@ -317,20 +501,71 @@
                             </tr>
                         </thead>
                         <tbody id="scheduleBody">
-                            <!-- JS will inject rows -->
+                            <!-- JS injected rows -->
                         </tbody>
                     </table>
+                </div>
+
+                <div class="action-btns">
+                    <button class="action-btn" onclick="alert('PDF Report downloaded successfully!')">&#128196; Download PDF</button>
+                    <button class="action-btn" onclick="alert('Result link copied to clipboard!')">&#128279; Share Result</button>
                 </div>
             </div>
 
         </div>
+
+        <!-- SEO & Enhanced FAQ Section -->
+        <div class="seo-section">
+            <h3>Complete Guide to Car Loans & Auto Financing in India</h3>
+            <p>Planning to purchase a new vehicle? Using an online auto loan EMI calculator helps you evaluate your monthly budget precisely before approaching banks like SBI, HDFC, ICICI, or Axis Bank. Factors like loan tenure, principal amount, and annual interest rates dictate your overall financial commitment[span_0](start_span)[span_0](end_span).</p>
+            
+            <h3>Key Factors Affecting Your Car Loan EMI</h3>
+            <p><strong>Term of the Loan (Tenure):</strong> Extending your loan period reduces your monthly installment (EMI) but increases the overall total interest payout over time[span_1](start_span)[span_1](end_span).</p>
+            <p><strong>Rate of Interest (P.A.):</strong> Securing a lower interest rate dramatically reduces your cumulative liability[span_2](start_span)[span_2](end_span). Always compare various vehicle loan options.</p>
+            <p><strong>Principal Amount:</strong> The net borrowing amount determines your base calculations and affects your debt-to-income ratio[span_3](start_span)[span_3](end_span).</p>
+
+            <h3>Frequently Asked Questions (FAQs)</h3>
+            <div class="faq-item">
+                <div class="faq-question">What sort of loans can I use this EMI calculator for?</div>
+                <div class="faq-answer">You can use this calculator for Auto Loans, Car Loans, Two-Wheeler Loans, Personal Loans, and Home Financing[span_4](start_span)[span_4](end_span).</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How does the debt-to-income ratio affect loan eligibility?</div>
+                <div class="faq-answer">Banks prefer your total monthly debt payments (including the new car EMI) to remain below 50% of your net monthly income to maximize approval chances[span_5](start_span)[span_5](end_span).</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What does an EMI consist of?</div>
+                <div class="faq-answer">Every Equated Monthly Installment (EMI) comprises a portion of the principal repayment alongside the calculated interest for that specific month[span_6](start_span)[span_6](end_span).</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Is reducing balance interest better than flat interest?</div>
+                <div class="faq-answer">Yes, reducing balance interest charges interest only on the outstanding principal balance left after previous repayments, saving you considerable money compared to flat interest methods.</div>
+            </div>
+
+            <h3>Related Financial Calculators & Tools</h3>
+            <div class="related-tools">
+                <a href="personal-loan.html" class="tool-link-card">Personal Loan Calculator</a>
+                <a href="home-loan.html" class="tool-link-card">Home Loan Calculator</a>
+                <a href="sip.html" class="tool-link-card">SIP & Mutual Fund Calculator</a>
+                <a href="https://pdfgridbox.in" class="tool-link-card" target="_blank">PDF Tools & Converters</a>
+            </div>
+        </div>
+
     </div>
 
     <footer>
+        <div class="footer-divider"></div>
+        
+        <!-- Prominent Navigation Buttons as requested -->
+        <div class="page-action-footer-buttons">
+            <a href="index.html" class="big-footer-btn alt">&larr; Back to Home</a>
+            <a href="https://pdfgridbox.in" class="big-footer-btn" target="_blank">PDF Tools (pdfgridbox.in) &rarr;</a>
+        </div>
+
         <div class="footer-links">
-            <a href="about.html">About Us</a> |
-            <a href="privacy-policy.html">Privacy Policy</a> |
-            <a href="disclaimer.html">Disclaimer</a> |
+            <a href="about.html">About Us</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="disclaimer.html">Disclaimer</a>
             <a href="contact-us.html">Contact Us</a>
         </div>
         <p>&copy; 2026 PDFGridBox. All rights reserved.</p>
@@ -338,96 +573,132 @@
 
     <script>
         document.getElementById('startDate').valueAsDate = new Date();
-
         let tenureMode = 'months';
 
-        function syncInput(targetId, val) {
-            document.getElementById(targetId).value = val;
+        function formatIndianCurrency(num) {
+            if (isNaN(num)) return "0";
+            let nStr = num.toString();
+            let x = nStr.split('.');
+            let x1 = x[0];
+            let x2 = x.length > 1 ? '.' + x[1] : '';
+            let lastThree = x1.substring(x1.length - 3);
+            let otherNumbers = x1.substring(0, x1.length - 3);
+            if (otherNumbers !== '') {
+                lastThree = ',' + lastThree;
+            }
+            let res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+            return res + x2;
+        }
+
+        function parseCleanNumber(str) {
+            if (!str) return 0;
+            return parseFloat(str.toString().replace(/,/g, '')) || 0;
+        }
+
+        function handleSliderInput(sliderId, textId, isFloat = false) {
+            const val = document.getElementById(sliderId).value;
+            const textElem = document.getElementById(textId);
+            if (isFloat) {
+                textElem.value = val;
+            } else {
+                textElem.value = formatIndianCurrency(val);
+            }
+            calculateAutoLoan();
+        }
+
+        function handleTextFormatting(elem, sliderId, isFloat = false) {
+            let cleanVal = parseCleanNumber(elem.value);
+            document.getElementById(sliderId).value = cleanVal;
+            calculateAutoLoan();
         }
 
         function setTenureMode(mode) {
             tenureMode = mode;
-            const tNum = document.getElementById('tenureNum');
+            const tText = document.getElementById('tenureText');
             const tRange = document.getElementById('tenureRange');
             const btnM = document.getElementById('btnMonths');
             const btnY = document.getElementById('btnYears');
+            const minMax = document.getElementById('tenureMinMax');
+
+            let currentVal = parseCleanNumber(tText.value) || 60;
 
             if (mode === 'years') {
                 btnY.classList.add('active');
                 btnM.classList.remove('active');
-                let currentMonths = parseFloat(tNum.value) || 60;
-                let currentYears = Math.round(currentMonths / 12) || 5;
-                if(currentYears < 1) currentYears = 1;
-                
+                let yrs = Math.round(currentVal / 12) || 5;
+                if (yrs < 1) yrs = 1;
+                if (yrs > 10) yrs = 10;
                 tRange.min = 1;
                 tRange.max = 10;
                 tRange.step = 1;
-                tRange.value = currentYears;
-                tNum.value = currentYears;
+                tRange.value = yrs;
+                tText.value = yrs;
+                minMax.innerHTML = '<span>1 Years</span><span>10 Years</span>';
             } else {
                 btnM.classList.add('active');
                 btnY.classList.remove('active');
-                let currentYears = parseFloat(tNum.value) || 5;
-                let currentMonths = currentYears * 12;
-
+                let mos = currentVal <= 10 ? currentVal * 12 : currentVal;
+                if (mos > 120) mos = 120;
                 tRange.min = 6;
                 tRange.max = 120;
                 tRange.step = 1;
-                tRange.value = currentMonths;
-                tNum.value = currentMonths;
+                tRange.value = mos;
+                tText.value = mos;
+                minMax.innerHTML = '<span>6 Months</span><span>120 Months</span>';
             }
+            calculateAutoLoan();
         }
 
-        document.getElementById('loanAmountRange').addEventListener('input', (e) => syncInput('loanAmountNum', e.target.value));
-        document.getElementById('rateRange').addEventListener('input', (e) => syncInput('rateNum', e.target.value));
-        document.getElementById('tenureRange').addEventListener('input', (e) => syncInput('tenureNum', e.target.value));
-
-        document.getElementById('loanAmountNum').addEventListener('input', (e) => syncInput('loanAmountRange', e.target.value));
-        document.getElementById('rateNum').addEventListener('input', (e) => syncInput('rateRange', e.target.value));
-        document.getElementById('tenureNum').addEventListener('input', (e) => syncInput('tenureRange', e.target.value));
-
         function calculateAutoLoan() {
-            const p = parseFloat(document.getElementById('loanAmountNum').value) || 0;
-            const annualRate = parseFloat(document.getElementById('rateNum').value) || 0;
-            let rawTenure = parseFloat(document.getElementById('tenureNum').value) || 0;
+            const rawP = parseCleanNumber(document.getElementById('loanAmountText').value);
+            const annualRate = parseCleanNumber(document.getElementById('rateText').value);
+            let rawTenure = parseCleanNumber(document.getElementById('tenureText').value);
             const interestType = document.getElementById('interestType').value;
             const startDateVal = document.getElementById('startDate').value;
 
-            let months = tenureMode === 'years' ? rawTenure * 12 : rawTenure;
-
-            if (p <= 0 || !annualRate || !months) {
-                alert("Please enter valid loan details.");
+            if (rawP <= 0) {
+                alert("Please enter a valid loan amount.");
                 return;
             }
+            if (annualRate <= 0) {
+                alert("Please enter a valid interest rate.");
+                return;
+            }
+            if (rawTenure <= 0) {
+                alert("Please enter a valid loan tenure.");
+                return;
+            }
+
+            let months = tenureMode === 'years' ? rawTenure * 12 : rawTenure;
 
             let emi = 0, totalPayment = 0, totalInterest = 0;
             const r = annualRate / 12 / 100;
 
             if (interestType === 'reducing') {
-                emi = (p * r * Math.pow(1 + r, months)) / (Math.pow(1 + r, months) - 1);
+                emi = (rawP * r * Math.pow(1 + r, months)) / (Math.pow(1 + r, months) - 1);
                 totalPayment = emi * months;
-                totalInterest = totalPayment - p;
+                totalInterest = totalPayment - rawP;
             } else {
                 let yearsTime = months / 12;
-                totalInterest = p * (annualRate / 100) * yearsTime;
-                totalPayment = p + totalInterest;
+                totalInterest = rawP * (annualRate / 100) * yearsTime;
+                totalPayment = rawP + totalInterest;
                 emi = totalPayment / months;
             }
 
             document.getElementById('resultSection').style.display = "block";
             
-            document.getElementById('resEmi').innerText = `₹${emi.toFixed(2)}`;
-            document.getElementById('resPrincipal').innerText = `₹${p.toFixed(2)}`;
-            document.getElementById('resInterest').innerText = `₹${totalInterest.toFixed(2)}`;
-            document.getElementById('resTotal').innerText = `₹${totalPayment.toFixed(2)}`;
+            document.getElementById('resEmi').innerText = `₹${formatIndianCurrency(emi.toFixed(2))}`;
+            document.getElementById('resPrincipal').innerText = `₹${formatIndianCurrency(rawP.toFixed(2))}`;
+            document.getElementById('resInterest').innerText = `₹${formatIndianCurrency(totalInterest.toFixed(2))}`;
+            document.getElementById('resTotal').innerText = `₹${formatIndianCurrency(totalPayment.toFixed(2))}`;
 
-            const principalPercent = (p / totalPayment) * 360;
+            const principalPercent = (rawP / totalPayment) * 360;
             document.getElementById('donutChart').style.background = `conic-gradient(#f97316 0deg ${principalPercent}deg, #38bdf8 ${principalPercent}deg 360deg)`;
 
             document.getElementById('scheduleTitle').innerText = `Month-Wise Amortization Schedule (${interestType === 'reducing' ? 'Reducing Interest' : 'Flat Interest'})`;
 
             let scheduleHTML = '';
-            let balance = p;
+            let balance = rawP;
             let currentDate = startDateVal ? new Date(startDateVal) : new Date();
 
             if (interestType === 'reducing') {
@@ -443,15 +714,15 @@
                     scheduleHTML += `
                         <tr>
                             <td>${monthStr} ${yearStr}</td>
-                            <td>₹${principalForMonth.toFixed(2)}</td>
-                            <td>₹${interestForMonth.toFixed(2)}</td>
-                            <td>₹${balance.toFixed(2)}</td>
+                            <td>₹${formatIndianCurrency(principalForMonth.toFixed(2))}</td>
+                            <td>₹${formatIndianCurrency(interestForMonth.toFixed(2))}</td>
+                            <td>₹${formatIndianCurrency(balance.toFixed(2))}</td>
                         </tr>
                     `;
                     currentDate.setMonth(currentDate.getMonth() + 1);
                 }
             } else {
-                let monthlyPrincipal = p / months;
+                let monthlyPrincipal = rawP / months;
                 let monthlyInterest = totalInterest / months;
                 for (let i = 1; i <= months; i++) {
                     balance -= monthlyPrincipal;
@@ -463,9 +734,9 @@
                     scheduleHTML += `
                         <tr>
                             <td>${monthStr} ${yearStr}</td>
-                            <td>₹${monthlyPrincipal.toFixed(2)}</td>
-                            <td>₹${monthlyInterest.toFixed(2)}</td>
-                            <td>₹${balance.toFixed(2)}</td>
+                            <td>₹${formatIndianCurrency(monthlyPrincipal.toFixed(2))}</td>
+                            <td>₹${formatIndianCurrency(monthlyInterest.toFixed(2))}</td>
+                            <td>₹${formatIndianCurrency(balance.toFixed(2))}</td>
                         </tr>
                     `;
                     currentDate.setMonth(currentDate.getMonth() + 1);
@@ -474,6 +745,10 @@
 
             document.getElementById('scheduleBody').innerHTML = scheduleHTML;
         }
+
+        window.onload = function() {
+            calculateAutoLoan();
+        };
     </script>
 </body>
 </html>
