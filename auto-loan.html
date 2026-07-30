@@ -199,7 +199,6 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             transition: transform 0.2s;
         }
-        .result-card-box:hover { transform: scale(1.02); }
         .result-card-box span { font-size: 0.85rem; color: #fed7aa; display: block; margin-bottom: 0.4rem; font-weight: 800; }
         .result-card-box strong { font-size: 1.15rem; color: #38bdf8; font-weight: 900; letter-spacing: 0.3px; }
 
@@ -378,14 +377,20 @@
         .footer-links a { color: #fed7aa; text-decoration: none; font-weight: 800; font-size: 1rem; min-height: 48px; display: flex; align-items: center; }
         .footer-links a:hover { color: #f97316; text-decoration: underline; }
 
-        /* Print Media Styles for Native PDF Generation */
+        /* Print Header - Hidden on screen, visible on PDF / Print */
+        .print-header { display: none; }
+
+        /* Print Media Styles: Generates professional branded PDF */
         @media print {
             body { background: #fff !important; color: #000 !important; }
             header, .form-group, .btn, .action-btns, footer, .seo-section { display: none !important; }
-            .result-section { display: block !important; }
-            .calc-box { background: none !important; border: none !important; box-shadow: none !important; }
-            .result-card-box { border: 1px solid #ccc !important; background: #f9f9f9 !important; color: #000 !important; }
-            .comparison-table th { background: #eee !important; color: #000 !important; }
+            .print-header { display: block !important; text-align: center; margin-bottom: 2rem; border-bottom: 2px solid #f97316; padding-bottom: 1rem; }
+            .print-header h1 { font-size: 22px; color: #f97316; font-weight: 900; }
+            .print-header p { font-size: 12px; color: #555; font-weight: 800; }
+            .result-section { display: block !important; margin-top: 0 !important; }
+            .calc-box { background: none !important; border: none !important; box-shadow: none !important; padding: 0 !important; }
+            .result-card-box { border: 1px solid #ccc !important; background: #fdfdfd !important; color: #000 !important; }
+            .comparison-table th { background: #f1f1f1 !important; color: #000 !important; -webkit-print-color-adjust: exact; }
             .comparison-table td { color: #000 !important; border: 1px solid #ddd !important; }
         }
     </style>
@@ -404,10 +409,16 @@
     <div class="container">
         <div class="hero">
             <h1>Auto Loan Calculator India</h1>
-            <div class="hero-sub">Fast &bull; Accurate &bull; Free Car Loan & EMI Planner</div>
+            <div class="hero-sub">Fast &bull; Accurate &bull; Car Loan & EMI Planner</div>
         </div>
 
         <div class="calc-box">
+            <!-- Branded header visible only inside the PDF/Print report -->
+            <div class="print-header">
+                <h1>PDFGridBox Calc - Auto Loan Report</h1>
+                <p>Official Amortization Schedule & EMI Calculation (pdfgridbox.in)</p>
+            </div>
+
             <div class="form-group">
                 <label><span>Loan Start Date</span></label>
                 <input type="date" id="startDate" onchange="calculateAutoLoan()">
@@ -455,8 +466,7 @@
                         Interest Calculation Type
                         <span class="info-icon">i
                             <span class="info-tooltip">
-                                <strong>Reducing Balance Interest</strong> is the most common method used by banks. Interest is calculated only on the remaining loan balance.<br><br>
-                                <strong>Flat Interest</strong> calculates interest on the original loan amount for the entire tenure and usually results in a higher total payment.
+                                <strong>Reducing Balance Interest</strong> is the most common method used by banks. Interest is calculated only on the remaining loan balance.
                             </span>
                         </span>
                     </span>
@@ -525,29 +535,16 @@
         <!-- SEO & FAQ Section -->
         <div class="seo-section">
             <h3>Complete Guide to Car Loans & Auto Financing in India</h3>
-            <p>Planning to purchase a new vehicle? Using an online auto loan EMI calculator helps you evaluate your monthly budget precisely before approaching banks like SBI, HDFC, ICICI, or Axis Bank. Factors like loan tenure, principal amount, and annual interest rates dictate your overall financial commitment[span_0](start_span)[span_0](end_span).</p>
-            
-            <h3>Key Factors Affecting Your Car Loan EMI</h3>
-            <p><strong>Term of the Loan (Tenure):</strong> Extending your loan period reduces your monthly installment (EMI) but increases the overall total interest payout over time[span_1](start_span)[span_1](end_span).</p>
-            <p><strong>Rate of Interest (P.A.):</strong> Securing a lower interest rate dramatically reduces your cumulative liability[span_2](start_span)[span_2](end_span). Always compare various vehicle loan options.</p>
-            <p><strong>Principal Amount:</strong> The net borrowing amount determines your base calculations and affects your debt-to-income ratio[span_3](start_span)[span_3](end_span).</p>
+            <p>Planning to purchase a new vehicle? Using an online auto loan EMI calculator helps you evaluate your monthly budget precisely before approaching banks like SBI, HDFC, ICICI, or Axis Bank[span_0](start_span)[span_0](end_span).</p>
 
             <h3>Frequently Asked Questions (FAQs)</h3>
             <div class="faq-item">
-                <div class="faq-question">What sort of loans can I use this EMI calculator for?</div>
-                <div class="faq-answer">You can use this calculator for Auto Loans, Car Loans, Two-Wheeler Loans, Personal Loans, and Home Financing[span_4](start_span)[span_4](end_span).</div>
+                <div class="faq-question">What sort of loans can I use this calculator for?</div>
+                <div class="faq-answer">You can use this calculator for Auto Loans, Car Loans, Two-Wheeler Loans, Personal Loans, and Home Financing[span_1](start_span)[span_1](end_span).</div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">How does the debt-to-income ratio affect loan eligibility?</div>
-                <div class="faq-answer">Banks prefer your total monthly debt payments (including the new car EMI) to remain below 50% of your net monthly income to maximize approval chances[span_5](start_span)[span_5](end_span).</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">What does an EMI consist of?</div>
-                <div class="faq-answer">Every Equated Monthly Installment (EMI) comprises a portion of the principal repayment alongside the calculated interest for that specific month[span_6](start_span)[span_6](end_span).</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Is reducing balance interest better than flat interest?</div>
-                <div class="faq-answer">Yes, reducing balance interest charges interest only on the outstanding principal balance left after previous repayments, saving you considerable money compared to flat interest methods.</div>
+                <div class="faq-answer">Banks prefer your total monthly debt payments to remain below 50% of your net monthly income[span_2](start_span)[span_2](end_span).</div>
             </div>
 
             <h3>Related Financial Calculators & Tools</h3>
