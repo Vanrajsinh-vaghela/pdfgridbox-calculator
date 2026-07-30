@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Analytics (Aap apna Measurement ID yahan daal sakte hain jaise G-XXXXXXXXXX) -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_MEASUREMENT_ID"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auto Loan Calculator | PDFGridBox Calc</title>
-    <meta name="description" content="Calculate monthly auto loan payments, compare flat vs reducing interest, and view visual breakdown.">
+    <meta name="description" content="Calculate monthly auto loan payments, select interest type, start date, and view complete month-wise amortization schedule.">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Segoe UI', sans-serif; font-weight: 800; }
@@ -41,9 +41,7 @@
         .back-link { color: #cbd5e1; text-decoration: none; font-size: 0.9rem; }
         .back-link:hover { color: #f97316; }
 
-        .container { max-width: 680px; margin: 2rem auto; padding: 0 1rem; }
-        
-        /* Fixed Box Overflow Issue */
+        .container { max-width: 720px; margin: 2rem auto; padding: 0 1rem; }
         .calc-box { 
             background: rgba(20, 14, 10, 0.85); 
             backdrop-filter: blur(12px);
@@ -51,16 +49,17 @@
             border-radius: 16px; 
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); 
             border: 1px solid rgba(249, 115, 22, 0.2);
-            overflow: hidden; /* Prevents inside elements from spilling out */
-            height: auto;     /* Dynamic height based on content */
+            overflow: hidden;
+            height: auto;
         }
         
         h2 { font-size: 1.6rem; margin-bottom: 1.5rem; color: #ffffff; font-weight: 900; text-align: center; letter-spacing: 0.5px; }
+        h3 { font-size: 1.2rem; margin: 1.5rem 0 0.8rem 0; color: #fed7aa; font-weight: 900; text-align: center; }
         
         .form-group { margin-bottom: 1.3rem; }
         .form-group label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; font-size: 0.95rem; color: #fed7aa; font-weight: 800; }
         
-        .form-group input[type="number"] { 
+        .form-group input[type="number"], .form-group input[type="date"], .form-group select { 
             width: 100%; 
             padding: 0.75rem 1rem; 
             background: rgba(30, 20, 15, 0.8);
@@ -72,7 +71,9 @@
             text-align: right; 
             outline: none;
         }
-        .form-group input[type="number"]:focus { border-color: #f97316; box-shadow: 0 0 10px rgba(249, 115, 22, 0.3); }
+        .form-group select { text-align-last: right; cursor: pointer; }
+        .form-group input[type="date"] { color-scheme: dark; }
+        .form-group input:focus, .form-group select:focus { border-color: #f97316; box-shadow: 0 0 10px rgba(249, 115, 22, 0.3); }
 
         .form-group input[type="range"] {
             width: 100%;
@@ -180,34 +181,39 @@
         .legend-item { display: flex; align-items: center; gap: 0.5rem; color: #fed7aa; }
         .legend-color { width: 12px; height: 12px; border-radius: 50%; }
 
-        /* Table Wrapper to prevent any breaking */
         .table-responsive {
             width: 100%;
             overflow-x: auto;
+            margin-bottom: 1.5rem;
+            max-height: 400px;
+            border-radius: 12px;
+            border: 1px solid rgba(249, 115, 22, 0.3);
         }
+        
+        /* Table with Both Vertical and Horizontal Grid Lines */
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
             font-size: 0.85rem;
             background: rgba(30, 20, 15, 0.7);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(249, 115, 22, 0.25);
-            min-width: 450px;
+            min-width: 550px;
+            border: 1px solid rgba(249, 115, 22, 0.3);
         }
         .comparison-table th, .comparison-table td {
             padding: 0.8rem;
             text-align: left;
-            border-bottom: 1px solid rgba(249, 115, 22, 0.15);
+            border: 1px solid rgba(249, 115, 22, 0.25); /* Vertical & Horizontal inner borders */
             font-weight: 800;
         }
         .comparison-table th {
             background: rgba(40, 25, 18, 0.95);
             color: #f97316;
             font-weight: 900;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
         .comparison-table td { color: #f1f5f9; }
-        .comparison-table tr:last-child td { border-bottom: none; }
 
         footer { text-align: center; padding: 2rem 1rem; background: rgba(12, 8, 6, 0.9); color: #94a3b8; margin-top: 3rem; font-weight: 800; border-top: 1px solid rgba(249, 115, 22, 0.15); font-size: 0.85rem; }
         .footer-links { margin-bottom: 0.8rem; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
@@ -227,6 +233,11 @@
         <div class="calc-box">
             <h2>Auto Loan Calculator</h2>
             
+            <div class="form-group">
+                <label><span>Loan Start Date</span></label>
+                <input type="date" id="startDate">
+            </div>
+
             <div class="form-group">
                 <label><span>Vehicle Price (₹)</span></label>
                 <input type="number" id="carPriceNum" value="800000" oninput="syncInput('carPriceRange', this.value)">
@@ -255,6 +266,14 @@
                 </label>
                 <input type="number" id="tenureNum" value="60" oninput="syncInput('tenureRange', this.value)">
                 <input type="range" id="tenureRange" min="6" max="120" step="1" value="60" oninput="syncInput('tenureRange', this.value)">
+            </div>
+
+            <div class="form-group">
+                <label><span>Interest Calculation Type</span></label>
+                <select id="interestType">
+                    <option value="reducing">Reducing Interest</option>
+                    <option value="flat">Flat Interest</option>
+                </select>
             </div>
 
             <button class="btn" onclick="calculateAutoLoan()">Calculate Auto Loan</button>
@@ -287,29 +306,20 @@
                     </div>
                 </div>
 
+                <h3 id="scheduleTitle">Month-Wise Amortization Schedule</h3>
                 <div class="table-responsive">
-                    <table class="comparison-table">
+                    <table class="comparison-table" id="scheduleTable">
                         <thead>
                             <tr>
-                                <th>Interest Type</th>
-                                <th>Monthly EMI</th>
-                                <th>Total Interest</th>
-                                <th>Total Payment</th>
+                                <th>Month</th>
+                                <th>Year</th>
+                                <th>Principal Paid</th>
+                                <th>Interest Paid</th>
+                                <th>Remaining Balance</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Reducing</strong></td>
-                                <td id="redEmi">-</td>
-                                <td id="redInt">-</td>
-                                <td id="redTot">-</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Flat</strong></td>
-                                <td id="flatEmi">-</td>
-                                <td id="flatInt">-</td>
-                                <td id="flatTot">-</td>
-                            </tr>
+                        <tbody id="scheduleBody">
+                            <!-- JS will inject rows -->
                         </tbody>
                     </table>
                 </div>
@@ -329,6 +339,8 @@
     </footer>
 
     <script>
+        document.getElementById('startDate').valueAsDate = new Date();
+
         let tenureMode = 'months';
 
         function syncInput(targetId, val) {
@@ -383,6 +395,8 @@
             const down = parseFloat(document.getElementById('downNum').value) || 0;
             const annualRate = parseFloat(document.getElementById('rateNum').value) || 0;
             let rawTenure = parseFloat(document.getElementById('tenureNum').value) || 0;
+            const interestType = document.getElementById('interestType').value;
+            const startDateVal = document.getElementById('startDate').value;
 
             const p = price - down;
             let months = tenureMode === 'years' ? rawTenure * 12 : rawTenure;
@@ -392,33 +406,81 @@
                 return;
             }
 
+            let emi = 0, totalPayment = 0, totalInterest = 0;
             const r = annualRate / 12 / 100;
-            const redEmi = (p * r * Math.pow(1 + r, months)) / (Math.pow(1 + r, months) - 1);
-            const redTotalPayment = redEmi * months;
-            const redTotalInterest = redTotalPayment - p;
 
-            const yearsTime = months / 12;
-            const flatTotalInterest = p * (annualRate / 100) * yearsTime;
-            const flatTotalPayment = p + flatTotalInterest;
-            const flatEmi = flatTotalPayment / months;
+            if (interestType === 'reducing') {
+                emi = (p * r * Math.pow(1 + r, months)) / (Math.pow(1 + r, months) - 1);
+                totalPayment = emi * months;
+                totalInterest = totalPayment - p;
+            } else {
+                let yearsTime = months / 12;
+                totalInterest = p * (annualRate / 100) * yearsTime;
+                totalPayment = p + totalInterest;
+                emi = totalPayment / months;
+            }
 
             document.getElementById('resultSection').style.display = "block";
             
-            document.getElementById('resEmi').innerText = `₹${redEmi.toFixed(2)}`;
+            document.getElementById('resEmi').innerText = `₹${emi.toFixed(2)}`;
             document.getElementById('resPrincipal').innerText = `₹${p.toFixed(2)}`;
-            document.getElementById('resInterest').innerText = `₹${redTotalInterest.toFixed(2)}`;
-            document.getElementById('resTotal').innerText = `₹${redTotalPayment.toFixed(2)}`;
+            document.getElementById('resInterest').innerText = `₹${totalInterest.toFixed(2)}`;
+            document.getElementById('resTotal').innerText = `₹${totalPayment.toFixed(2)}`;
 
-            document.getElementById('redEmi').innerText = `₹${redEmi.toFixed(2)}`;
-            document.getElementById('redInt').innerText = `₹${redTotalInterest.toFixed(2)}`;
-            document.getElementById('redTot').innerText = `₹${redTotalPayment.toFixed(2)}`;
-
-            document.getElementById('flatEmi').innerText = `₹${flatEmi.toFixed(2)}`;
-            document.getElementById('flatInt').innerText = `₹${flatTotalInterest.toFixed(2)}`;
-            document.getElementById('flatTot').innerText = `₹${flatTotalPayment.toFixed(2)}`;
-
-            const principalPercent = (p / redTotalPayment) * 360;
+            const principalPercent = (p / totalPayment) * 360;
             document.getElementById('donutChart').style.background = `conic-gradient(#f97316 0deg ${principalPercent}deg, #38bdf8 ${principalPercent}deg 360deg)`;
+
+            document.getElementById('scheduleTitle').innerText = `Month-Wise Amortization Schedule (${interestType === 'reducing' ? 'Reducing Interest' : 'Flat Interest'})`;
+
+            let scheduleHTML = '';
+            let balance = p;
+            let currentDate = startDateVal ? new Date(startDateVal) : new Date();
+
+            if (interestType === 'reducing') {
+                for (let i = 1; i <= months; i++) {
+                    let interestForMonth = balance * r;
+                    let principalForMonth = emi - interestForMonth;
+                    balance -= principalForMonth;
+                    if (balance < 0) balance = 0;
+
+                    let monthStr = currentDate.toLocaleString('default', { month: 'short' });
+                    let yearStr = currentDate.getFullYear();
+
+                    scheduleHTML += `
+                        <tr>
+                            <td>${monthStr}</td>
+                            <td>${yearStr}</td>
+                            <td>₹${principalForMonth.toFixed(2)}</td>
+                            <td>₹${interestForMonth.toFixed(2)}</td>
+                            <td>₹${balance.toFixed(2)}</td>
+                        </tr>
+                    `;
+                    currentDate.setMonth(currentDate.getMonth() + 1);
+                }
+            } else {
+                let monthlyPrincipal = p / months;
+                let monthlyInterest = totalInterest / months;
+                for (let i = 1; i <= months; i++) {
+                    balance -= monthlyPrincipal;
+                    if (balance < 0) balance = 0;
+
+                    let monthStr = currentDate.toLocaleString('default', { month: 'short' });
+                    let yearStr = currentDate.getFullYear();
+
+                    scheduleHTML += `
+                        <tr>
+                            <td>${monthStr}</td>
+                            <td>${yearStr}</td>
+                            <td>₹${monthlyPrincipal.toFixed(2)}</td>
+                            <td>₹${monthlyInterest.toFixed(2)}</td>
+                            <td>₹${balance.toFixed(2)}</td>
+                        </tr>
+                    `;
+                    currentDate.setMonth(currentDate.getMonth() + 1);
+                }
+            }
+
+            document.getElementById('scheduleBody').innerHTML = scheduleHTML;
         }
     </script>
 </body>
