@@ -1,22 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVHH8GXB91"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-GVHH8GXB91');
-</script>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_MEASUREMENT_ID"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GVHH8GXB91"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'YOUR_MEASUREMENT_ID');
+
+      gtag('config', 'G-GVHH8GXB91');
     </script>
 
     <meta charset="UTF-8">
@@ -189,7 +181,6 @@
         .legend-item { display: flex; align-items: center; gap: 0.5rem; color: #fed7aa; }
         .legend-color { width: 12px; height: 12px; border-radius: 50%; }
 
-        /* Smooth and fully visible horizontal scroll table */
         .table-responsive {
             width: 100%;
             overflow-x: auto;
@@ -238,7 +229,7 @@
 <body>
     <header>
         <div class="nav-container">
-            <a href="index.html" class="back-link">← Back to Calculators</a>
+            <a href="index.html" class="back-link">&larr; Back to Calculators</a>
             <a href="https://pdfgridbox.in" class="logo">PDFGridBox</a>
         </div>
     </header>
@@ -253,7 +244,7 @@
             </div>
 
             <div class="form-group">
-                <label><span>Loan Amount (₹)</span></label>
+                <label><span>Loan Amount (& গাড়ি/₹)</span></label>
                 <input type="number" id="loanAmountNum" value="650000" oninput="syncInput('loanAmountRange', this.value)">
                 <input type="range" id="loanAmountRange" min="50000" max="5000000" step="10000" value="650000" oninput="syncInput('loanAmountNum', this.value)">
             </div>
@@ -290,19 +281,19 @@
                 <div class="result-grid-boxes">
                     <div class="result-card-box">
                         <span>Monthly EMI</span>
-                        <strong id="resEmi">₹0</strong>
+                        <strong id="resEmi">& গাড়ি/₹0</strong>
                     </div>
                     <div class="result-card-box">
                         <span>Loan Amount</span>
-                        <strong id="resPrincipal">₹0</strong>
+                        <strong id="resPrincipal">& গাড়ি/₹0</strong>
                     </div>
                     <div class="result-card-box">
                         <span>Total Interest</span>
-                        <strong id="resInterest">₹0</strong>
+                        <strong id="resInterest">& গাড়ি/₹0</strong>
                     </div>
                     <div class="result-card-box">
                         <span>Total Payment</span>
-                        <strong id="resTotal">₹0</strong>
+                        <strong id="resTotal">& গাড়ি/₹0</strong>
                     </div>
                 </div>
 
