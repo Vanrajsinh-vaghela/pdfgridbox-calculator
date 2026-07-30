@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Analytics (Aap apna Measurement ID yahan daal sakte hain jaise G-XXXXXXXXXX) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'YOUR_MEASUREMENT_ID');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auto Loan Calculator | PDFGridBox Calc</title>
@@ -33,6 +42,8 @@
         .back-link:hover { color: #f97316; }
 
         .container { max-width: 680px; margin: 2rem auto; padding: 0 1rem; }
+        
+        /* Fixed Box Overflow Issue */
         .calc-box { 
             background: rgba(20, 14, 10, 0.85); 
             backdrop-filter: blur(12px);
@@ -40,13 +51,15 @@
             border-radius: 16px; 
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); 
             border: 1px solid rgba(249, 115, 22, 0.2);
+            overflow: hidden; /* Prevents inside elements from spilling out */
+            height: auto;     /* Dynamic height based on content */
         }
+        
         h2 { font-size: 1.6rem; margin-bottom: 1.5rem; color: #ffffff; font-weight: 900; text-align: center; letter-spacing: 0.5px; }
         
         .form-group { margin-bottom: 1.3rem; }
         .form-group label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; font-size: 0.95rem; color: #fed7aa; font-weight: 800; }
         
-        /* Right-aligned Input Fields */
         .form-group input[type="number"] { 
             width: 100%; 
             padding: 0.75rem 1rem; 
@@ -61,7 +74,6 @@
         }
         .form-group input[type="number"]:focus { border-color: #f97316; box-shadow: 0 0 10px rgba(249, 115, 22, 0.3); }
 
-        /* Range Slider Styling */
         .form-group input[type="range"] {
             width: 100%;
             margin-top: 0.5rem;
@@ -69,7 +81,6 @@
             cursor: pointer;
         }
 
-        /* Tenure Toggle Buttons */
         .tenure-toggle {
             display: flex;
             background: rgba(40, 25, 18, 0.9);
@@ -113,25 +124,23 @@
         
         .result-section { display: none; margin-top: 2rem; }
         
-        /* Spacious Result Boxes with Proper Spacing */
         .result-grid-boxes {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1.2rem;
+            gap: 1rem;
             margin-bottom: 1.5rem;
         }
         .result-card-box {
             background: rgba(30, 20, 15, 0.85);
             border: 1px solid rgba(249, 115, 22, 0.3);
-            padding: 1.2rem 1rem;
+            padding: 1rem;
             border-radius: 12px;
             text-align: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
-        .result-card-box span { font-size: 0.9rem; color: #fed7aa; display: block; margin-bottom: 0.5rem; font-weight: 800; }
-        .result-card-box strong { font-size: 1.25rem; color: #38bdf8; font-weight: 900; letter-spacing: 0.3px; }
+        .result-card-box span { font-size: 0.85rem; color: #fed7aa; display: block; margin-bottom: 0.4rem; font-weight: 800; }
+        .result-card-box strong { font-size: 1.15rem; color: #38bdf8; font-weight: 900; letter-spacing: 0.3px; }
 
-        /* Donut Chart Style with Enhanced Contrast Colors */
         .graph-container {
             display: flex;
             flex-direction: column;
@@ -143,8 +152,8 @@
             border: 1px solid rgba(249, 115, 22, 0.15);
         }
         .donut-chart {
-            width: 140px;
-            height: 140px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
             background: conic-gradient(#f97316 0deg 216deg, #38bdf8 216deg 360deg);
             display: flex;
@@ -157,32 +166,37 @@
         .donut-chart::after {
             content: '';
             position: absolute;
-            width: 90px;
-            height: 90px;
+            width: 85px;
+            height: 85px;
             background: #140e0a;
             border-radius: 50%;
         }
         .chart-legend {
             display: flex;
             gap: 2rem;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 800;
         }
         .legend-item { display: flex; align-items: center; gap: 0.5rem; color: #fed7aa; }
-        .legend-color { width: 14px; height: 14px; border-radius: 50%; }
+        .legend-color { width: 12px; height: 12px; border-radius: 50%; }
 
-        /* Comparison Table Style */
+        /* Table Wrapper to prevent any breaking */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+        }
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             background: rgba(30, 20, 15, 0.7);
             border-radius: 12px;
             overflow: hidden;
             border: 1px solid rgba(249, 115, 22, 0.25);
+            min-width: 450px;
         }
         .comparison-table th, .comparison-table td {
-            padding: 0.9rem;
+            padding: 0.8rem;
             text-align: left;
             border-bottom: 1px solid rgba(249, 115, 22, 0.15);
             font-weight: 800;
@@ -195,7 +209,6 @@
         .comparison-table td { color: #f1f5f9; }
         .comparison-table tr:last-child td { border-bottom: none; }
 
-        /* Footer & Legal Links */
         footer { text-align: center; padding: 2rem 1rem; background: rgba(12, 8, 6, 0.9); color: #94a3b8; margin-top: 3rem; font-weight: 800; border-top: 1px solid rgba(249, 115, 22, 0.15); font-size: 0.85rem; }
         .footer-links { margin-bottom: 0.8rem; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
         .footer-links a { color: #fed7aa; text-decoration: none; font-weight: 800; }
@@ -214,28 +227,24 @@
         <div class="calc-box">
             <h2>Auto Loan Calculator</h2>
             
-            <!-- Vehicle Price -->
             <div class="form-group">
                 <label><span>Vehicle Price (₹)</span></label>
                 <input type="number" id="carPriceNum" value="800000" oninput="syncInput('carPriceRange', this.value)">
                 <input type="range" id="carPriceRange" min="100000" max="5000000" step="10000" value="800000" oninput="syncInput('carPriceNum', this.value)">
             </div>
 
-            <!-- Down Payment -->
             <div class="form-group">
                 <label><span>Down Payment (₹)</span></label>
                 <input type="number" id="downNum" value="150000" oninput="syncInput('downRange', this.value)">
                 <input type="range" id="downRange" min="0" max="2500000" step="5000" value="150000" oninput="syncInput('downNum', this.value)">
             </div>
 
-            <!-- Interest Rate -->
             <div class="form-group">
                 <label><span>Interest Rate (% P.A.)</span></label>
                 <input type="number" id="rateNum" value="8.5" step="0.1" oninput="syncInput('rateRange', this.value)">
                 <input type="range" id="rateRange" min="1" max="25" step="0.1" value="8.5" oninput="syncInput('rateNum', this.value)">
             </div>
 
-            <!-- Tenure with Months/Years Switch -->
             <div class="form-group">
                 <label>
                     <span>Loan Tenure</span>
@@ -250,9 +259,7 @@
 
             <button class="btn" onclick="calculateAutoLoan()">Calculate Auto Loan</button>
             
-            <!-- Results Section -->
             <div id="resultSection" class="result-section">
-                <!-- Separate Boxes for Results with Proper Spacing -->
                 <div class="result-grid-boxes">
                     <div class="result-card-box">
                         <span>Monthly EMI</span>
@@ -272,7 +279,6 @@
                     </div>
                 </div>
 
-                <!-- Donut Chart with Enhanced Contrast Colors -->
                 <div class="graph-container">
                     <div id="donutChart" class="donut-chart"></div>
                     <div class="chart-legend">
@@ -281,31 +287,32 @@
                     </div>
                 </div>
 
-                <!-- Flat vs Reducing Table -->
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th>Interest Type</th>
-                            <th>Monthly EMI</th>
-                            <th>Total Interest</th>
-                            <th>Total Payment</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Reducing Interest</strong></td>
-                            <td id="redEmi">-</td>
-                            <td id="redInt">-</td>
-                            <td id="redTot">-</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Flat Interest</strong></td>
-                            <td id="flatEmi">-</td>
-                            <td id="flatInt">-</td>
-                            <td id="flatTot">-</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Interest Type</th>
+                                <th>Monthly EMI</th>
+                                <th>Total Interest</th>
+                                <th>Total Payment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Reducing</strong></td>
+                                <td id="redEmi">-</td>
+                                <td id="redInt">-</td>
+                                <td id="redTot">-</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Flat</strong></td>
+                                <td id="flatEmi">-</td>
+                                <td id="flatInt">-</td>
+                                <td id="flatTot">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
         </div>
