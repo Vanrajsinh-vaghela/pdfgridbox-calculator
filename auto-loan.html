@@ -302,7 +302,6 @@
         }
         .action-btn:hover { background: #f97316; color: #fff; }
 
-        /* SEO Content & FAQ Section */
         .seo-section {
             margin-top: 3rem;
             background: rgba(20, 14, 10, 0.6);
@@ -316,7 +315,6 @@
         .faq-question { color: #fed7aa; font-weight: 900; font-size: 0.95rem; margin-bottom: 0.3rem; }
         .faq-answer { color: #cbd5e1; font-weight: 700; font-size: 0.85rem; }
 
-        /* Related Tools Grid */
         .related-tools {
             margin-top: 1.5rem;
             display: grid;
@@ -337,7 +335,6 @@
         }
         .tool-link-card:hover { background: #f97316; color: #fff; border-color: #f97316; }
 
-        /* Prominent Navigation / Action Buttons for Home & PDF Tools */
         .page-action-footer-buttons {
             display: flex;
             justify-content: center;
@@ -380,6 +377,17 @@
         .footer-links { margin-bottom: 1rem; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
         .footer-links a { color: #fed7aa; text-decoration: none; font-weight: 800; font-size: 1rem; min-height: 48px; display: flex; align-items: center; }
         .footer-links a:hover { color: #f97316; text-decoration: underline; }
+
+        /* Print Media Styles for Native PDF Generation */
+        @media print {
+            body { background: #fff !important; color: #000 !important; }
+            header, .form-group, .btn, .action-btns, footer, .seo-section { display: none !important; }
+            .result-section { display: block !important; }
+            .calc-box { background: none !important; border: none !important; box-shadow: none !important; }
+            .result-card-box { border: 1px solid #ccc !important; background: #f9f9f9 !important; color: #000 !important; }
+            .comparison-table th { background: #eee !important; color: #000 !important; }
+            .comparison-table td { color: #000 !important; border: 1px solid #ddd !important; }
+        }
     </style>
 </head>
 <body>
@@ -507,14 +515,14 @@
                 </div>
 
                 <div class="action-btns">
-                    <button class="action-btn" onclick="alert('PDF Report downloaded successfully!')">&#128196; Download PDF</button>
+                    <button class="action-btn" onclick="window.print()">&#128196; Download PDF</button>
                     <button class="action-btn" onclick="alert('Result link copied to clipboard!')">&#128279; Share Result</button>
                 </div>
             </div>
 
         </div>
 
-        <!-- SEO & Enhanced FAQ Section -->
+        <!-- SEO & FAQ Section -->
         <div class="seo-section">
             <h3>Complete Guide to Car Loans & Auto Financing in India</h3>
             <p>Planning to purchase a new vehicle? Using an online auto loan EMI calculator helps you evaluate your monthly budget precisely before approaching banks like SBI, HDFC, ICICI, or Axis Bank. Factors like loan tenure, principal amount, and annual interest rates dictate your overall financial commitment[span_0](start_span)[span_0](end_span).</p>
@@ -556,7 +564,6 @@
     <footer>
         <div class="footer-divider"></div>
         
-        <!-- Prominent Navigation Buttons as requested -->
         <div class="page-action-footer-buttons">
             <a href="index.html" class="big-footer-btn alt">&larr; Back to Home</a>
             <a href="https://pdfgridbox.in" class="big-footer-btn" target="_blank">PDF Tools (pdfgridbox.in) &rarr;</a>
