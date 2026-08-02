@@ -23,20 +23,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Global Currency Converter - Live Foreign Exchange Rate Tool</title>
-    <meta name="description" content="Free online global currency converter with live exchange rates. Convert USD, INR, EUR, GBP, AED, CAD, and more accurately and instantly.">
+    <meta name="description" content="Free online global currency converter with live exchange rates for 160+ currencies worldwide. Convert USD, INR, EUR, GBP, AED, CAD, and more accurately.">
     <link rel="canonical" href="https://yourdomain.com/currency.html">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     
     <!-- Open Graph / Twitter Cards -->
     <meta property="og:title" content="Global Currency Converter - Live Exchange Rates">
-    <meta property="og:description" content="Convert global currencies online with real-time exchange rates. Fast, free, and accurate currency calculator.">
+    <meta property="og:description" content="Convert 160+ global currencies online with real-time exchange rates. Fast, free, and accurate currency calculator.">
     <meta property="og:image" content="https://yourdomain.com/images/currency-converter.png">
     <meta property="og:url" content="https://yourdomain.com/currency.html">
     <meta property="og:type" content="website">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Global Currency Converter">
-    <meta name="twitter:description" content="Convert currencies live worldwide with accurate foreign exchange rates.">
+    <meta name="twitter:description" content="Convert 160+ currencies live worldwide with accurate foreign exchange rates.">
     <meta name="twitter:image" content="https://yourdomain.com/images/currency-converter.png">
 
     <!-- Preconnect / Performance -->
@@ -54,7 +54,7 @@
           "@id": "https://yourdomain.com/currency.html#webpage",
           "url": "https://yourdomain.com/currency.html",
           "name": "Global Currency Converter",
-          "description": "Convert international currencies with real-time exchange rates online."
+          "description": "Convert over 160 international currencies with real-time exchange rates online."
         },
         {
           "@type": "BreadcrumbList",
@@ -93,8 +93,8 @@
             },
             {
               "@type": "Question",
-              "name": "Which currencies are supported?",
-              "acceptedAnswer": {"@type": "Answer", "text": "It supports all major global currencies including USD, INR, EUR, GBP, AED, CAD, AUD, JPY, and SAR."}
+              "name": "How many currencies are supported?",
+              "acceptedAnswer": {"@type": "Answer", "text": "It supports over 160 global currencies including USD, INR, EUR, GBP, AED, CAD, AUD, JPY, SAR, and many more."}
             }
           ]
         }
@@ -212,7 +212,7 @@
             border: 1px solid var(--border-color);
             border-radius: 8px;
             color: var(--text-main);
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 900;
             padding: 0 0.8rem;
             outline: none;
@@ -414,7 +414,7 @@
     <div class="container">
         <div class="hero">
             <h1>Global Currency Converter</h1>
-            <div class="hero-sub">Live Rates &bull; Precise &bull; Instant Forex Calculator</div>
+            <div class="hero-sub">Live Rates &bull; 160+ Currencies &bull; Forex Calculator</div>
         </div>
 
         <div class="calc-box">
@@ -433,17 +433,6 @@
                     <label class="input-label" for="fromCurrency">From</label>
                     <select id="fromCurrency" class="currency-select" onchange="convertCurrency()">
                         <option value="USD" selected>USD - US Dollar</option>
-                        <option value="INR">INR - Indian Rupee</option>
-                        <option value="EUR">EUR - Euro</option>
-                        <option value="GBP">GBP - British Pound</option>
-                        <option value="AED">AED - UAE Dirham</option>
-                        <option value="CAD">CAD - Canadian Dollar</option>
-                        <option value="AUD">AUD - Australian Dollar</option>
-                        <option value="SAR">SAR - Saudi Riyal</option>
-                        <option value="SGD">SGD - Singapore Dollar</option>
-                        <option value="JPY">JPY - Japanese Yen</option>
-                        <option value="CNY">CNY - Chinese Yuan</option>
-                        <option value="KWD">KWD - Kuwaiti Dinar</option>
                     </select>
                 </div>
 
@@ -452,24 +441,13 @@
                 <div>
                     <label class="input-label" for="toCurrency">To</label>
                     <select id="toCurrency" class="currency-select" onchange="convertCurrency()">
-                        <option value="USD">USD - US Dollar</option>
                         <option value="INR" selected>INR - Indian Rupee</option>
-                        <option value="EUR">EUR - Euro</option>
-                        <option value="GBP">GBP - British Pound</option>
-                        <option value="AED">AED - UAE Dirham</option>
-                        <option value="CAD">CAD - Canadian Dollar</option>
-                        <option value="AUD">AUD - Australian Dollar</option>
-                        <option value="SAR">SAR - Saudi Riyal</option>
-                        <option value="SGD">SGD - Singapore Dollar</option>
-                        <option value="JPY">JPY - Japanese Yen</option>
-                        <option value="CNY">CNY - Chinese Yuan</option>
-                        <option value="KWD">KWD - Kuwaiti Dinar</option>
                     </select>
                 </div>
             </div>
 
             <div class="result-card">
-                <div class="result-amount" id="resultDisplay">1 USD = -- INR</div>
+                <div class="result-amount" id="resultDisplay">Loading currencies...</div>
                 <div class="result-rate" id="exchangeRateInfo">Fetching real-time exchange rates...</div>
             </div>
 
@@ -484,7 +462,7 @@
         <!-- SEO & FAQ Section -->
         <div class="seo-section">
             <h3>Global Currency Converter & Live Foreign Exchange Utility</h3>
-            <p>Convert international currencies online with live foreign exchange rates. Perfect for travelers, international business, forex trading, freelancing, and personal finance calculations worldwide.</p>
+            <p>Convert international currencies online with live foreign exchange rates across 160+ countries. Perfect for travelers, international business, forex trading, freelancing, and personal finance calculations worldwide.</p>
 
             <h3>Frequently Asked Questions (FAQs)</h3>
             <div class="faq-item">
@@ -504,8 +482,8 @@
                 <div class="faq-answer">Yes, you can toggle between dark and light themes seamlessly using the theme button in the header.</div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">Which currencies can I convert?</div>
-                <div class="faq-answer">You can convert all top currencies including USD, INR, EUR, GBP, AED, CAD, AUD, SAR, JPY, and SGD.</div>
+                <div class="faq-question">How many currencies are supported?</div>
+                <div class="faq-answer">It supports over 160 global currencies including USD, INR, EUR, GBP, AED, CAD, AUD, SAR, JPY, SGD, KWD, BDT, PKR, and more.</div>
             </div>
 
             <h3>Related Financial & Utility Calculators</h3>
@@ -540,8 +518,68 @@
         let cachedRates = null;
         let lastBase = '';
 
+        // Popular Currency Labels Mapping
+        const currencyLabels = {
+            USD: "USD - US Dollar", INR: "INR - Indian Rupee", EUR: "EUR - Euro",
+            GBP: "GBP - British Pound", AED: "AED - UAE Dirham", CAD: "CAD - Canadian Dollar",
+            AUD: "AUD - Australian Dollar", SAR: "SAR - Saudi Riyal", SGD: "SGD - Singapore Dollar",
+            JPY: "JPY - Japanese Yen", CNY: "CNY - Chinese Yuan", KWD: "KWD - Kuwaiti Dinar",
+            BRL: "BRL - Brazilian Real", RUB: "RUB - Russian Ruble", ZAR: "ZAR - South African Rand",
+            MXN: "MXN - Mexican Peso", THB: "THB - Thai Baht", MYR: "MYR - Malaysian Ringgit",
+            IDR: "IDR - Indonesian Rupiah", PKR: "PKR - Pakistani Rupee", BDT: "BDT - Bangladeshi Taka",
+            NPR: "NPR - Nepalese Rupee", LKR: "LKR - Sri Lankan Rupee", NZD: "NZD - New Zealand Dollar",
+            CHF: "CHF - Swiss Franc", HKD: "HKD - Hong Kong Dollar", SEK: "SEK - Swedish Krona",
+            KRW: "KRW - South Korean Won", OMR: "OMR - Omani Rial", QAR: "QAR - Qatari Riyal",
+            BHD: "BHD - Bahraini Dinar", EGP: "EGP - Egyptian Pound", TRY: "TRY - Turkish Lira"
+        };
+
         function toggleTheme() {
             document.body.classList.toggle('light-theme');
+        }
+
+        async function initCurrencies() {
+            try {
+                let response = await fetch(`https://open.er-api.com/v6/latest/USD`);
+                let data = await response.json();
+                
+                if (data && data.rates) {
+                    cachedRates = data.rates;
+                    lastBase = 'USD';
+                    let codes = Object.keys(data.rates).sort();
+                    populateDropdowns(codes);
+                } else {
+                    throw new Error("Failed to load rates");
+                }
+            } catch (err) {
+                document.getElementById('resultDisplay').innerText = "Network Error";
+                document.getElementById('exchangeRateInfo').innerText = "Failed to load global currencies.";
+            }
+        }
+
+        function populateDropdowns(codes) {
+            let fromSelect = document.getElementById('fromCurrency');
+            let toSelect = document.getElementById('toCurrency');
+
+            let currentFrom = fromSelect.value || 'USD';
+            let currentTo = toSelect.value || 'INR';
+
+            fromSelect.innerHTML = '';
+            toSelect.innerHTML = '';
+
+            codes.forEach(code => {
+                let text = currencyLabels[code] ? currencyLabels[code] : `${code} - ${code}`;
+                
+                let option1 = new Option(text, code);
+                let option2 = new Option(text, code);
+
+                fromSelect.add(option1);
+                toSelect.add(option2);
+            });
+
+            fromSelect.value = codes.includes(currentFrom) ? currentFrom : 'USD';
+            toSelect.value = codes.includes(currentTo) ? currentTo : 'INR';
+
+            convertCurrency();
         }
 
         async function fetchExchangeRates(baseCurrency) {
@@ -593,7 +631,7 @@
                 rateInfo.innerText = `1 ${from} = ${rate.toFixed(4)} ${to}`;
             } else {
                 resultDisplay.innerText = "Conversion Error";
-                rateInfo.innerText = "Unable to fetch live rates. Please check internet connection.";
+                rateInfo.innerText = "Unable to fetch live rates. Check internet connection.";
             }
         }
 
@@ -623,9 +661,9 @@
             }
         }
 
-        // Run conversion on load
+        // Initialize on page load
         window.addEventListener('DOMContentLoaded', () => {
-            convertCurrency();
+            initCurrencies();
         });
     </script>
 </body>
