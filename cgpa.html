@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GVHH8GXB91"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-GVHH8GXB91');
+      gtag('config', 'AW-CONVERSION_ID');
+    </script>
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){((c[a].q=c[a].q||[]).push(arguments))};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "CLARITY_ID");
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGPA Calculator - Calculate College & University CGPA to Percentage</title>
+    <meta name="description" content="Calculate your Cumulative Grade Point Average (CGPA) online. Convert CGPA to percentage instantly for CBSE, Mumbai University, VTU, KTU, Anna University, and college courses.">
+    <link rel="canonical" href="https://yourdomain.com/cgpa.html">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <!-- Open Graph / Twitter Cards -->
+    <meta property="og:title" content="CGPA Calculator - Convert CGPA to Percentage Online">
+    <meta property="og:description" content="Calculate CGPA, SGPA, total credit points, and percentage online easily for school, college, and university courses.">
+    <meta property="og:image" content="https://yourdomain.com/images/cgpa-calculator.png">
+    <meta property="og:url" content="https://yourdomain.com/cgpa.html">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CGPA Calculator & Percentage Converter">
+    <meta name="twitter:description" content="Instant online CGPA Calculator for students and professionals.">
+    <meta name="twitter:image" content="https://yourdomain.com/images/cgpa-calculator.png">
+
+    <!-- Preconnect / Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://yourdomain.com/cgpa.html#webpage",
+          "url": "https://yourdomain.com/cgpa.html",
+          "name": "CGPA Calculator & Percentage Converter",
+          "description": "Calculate Cumulative Grade Point Average and convert CGPA into percentage."
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://yourdomain.com/index.html"},
+            {"@type": "ListItem", "position": 2, "name": "CGPA Calculator", "item": "https://yourdomain.com/cgpa.html"}
+          ]
+        },
+        {
+          "@type": "WebApplication",
+          "name": "CGPA Calculator",
+          "applicationCategory": "EducationalApplication",
+          "operatingSystem": "All",
+          "description": "Calculate CGPA, credit points, and percentage equivalent online."
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "How is CGPA converted to percentage?",
+              "acceptedAnswer": {"@type": "Answer", "text": "For CBSE and many Indian universities, Percentage (%) = CGPA × 9.5. Some universities also use CGPA × 10."}
+            },
+            {
+              "@type": "Question",
+              "name": "What is the formula to calculate CGPA?",
+              "acceptedAnswer": {"@type": "Answer", "text": "CGPA = (Sum of (Grade Point × Credit Hours)) / (Total Credit Hours)."}
+            },
+            {
+              "@type": "Question",
+              "name": "Is this CGPA Calculator free?",
+              "acceptedAnswer": {"@type": "Answer", "text": "Yes, it is 100% free with unlimited semester/subject additions and printable PDF reports."}
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --bg-color: #080604;
+            --box-bg: rgba(20, 14, 10, 0.85);
+            --text-main: #f8fafc;
+            --accent: #f97316;
+            --accent-hover: #ea580c;
+            --border-color: rgba(249, 115, 22, 0.2);
+            --input-bg: rgba(30, 20, 15, 0.8);
+        }
+        .light-theme {
+            --bg-color: #f8fafc;
+            --box-bg: rgba(255, 255, 255, 0.95);
+            --text-main: #0f172a;
+            --border-color: rgba(249, 115, 22, 0.3);
+            --input-bg: rgba(241, 245, 249, 0.9);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Segoe UI', sans-serif; font-weight: 800; }
+        body { 
+            background: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(249, 115, 22, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(234, 88, 12, 0.1) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-main); 
+            line-height: 1.6; 
+            min-height: 100vh;
+            transition: background 0.3s, color 0.3s;
+        }
+        header { 
+            background: rgba(12, 8, 6, 0.9); 
+            backdrop-filter: blur(16px); 
+            border-bottom: 1px solid rgba(249, 115, 22, 0.15); 
+            padding: 0.9rem 1.5rem; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+        }
+        .light-theme header { background: rgba(255, 255, 255, 0.9); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 800px; margin: 0 auto; }
+        .logo { font-size: 1.2rem; font-weight: 900; background: linear-gradient(135deg, #f97316, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+        
+        .nav-right { display: flex; align-items: center; gap: 12px; }
+        .nav-link { color: #cbd5e1; text-decoration: none; font-size: 0.85rem; font-weight: 800; min-height: 48px; display: flex; align-items: center; transition: color 0.2s; }
+        .light-theme .nav-link { color: #475569; }
+        .nav-link:hover { color: #f97316; }
+        .pdf-tools-btn { background: #f97316; color: white !important; padding: 0.4rem 0.9rem; border-radius: 6px; box-shadow: 0 2px 8px rgba(249, 115, 22, 0.4); }
+        .pdf-tools-btn:hover { background: #ea580c; }
+        .theme-toggle-btn { background: none; border: 1px solid var(--border-color); color: var(--accent); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; min-height: 48px; }
+
+        .container { max-width: 560px; margin: 2rem auto; padding: 0 1rem; }
+        
+        .hero { text-align: center; margin-bottom: 1.5rem; }
+        .hero h1 { font-size: 1.8rem; color: var(--text-main); font-weight: 900; }
+        .hero-sub { font-size: 0.85rem; color: #fb923c; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; margin-top: 0.2rem; }
+
+        .calc-box { 
+            background: var(--box-bg); 
+            backdrop-filter: blur(12px);
+            padding: 2rem; 
+            border-radius: 16px; 
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); 
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .input-group {
+            margin-bottom: 1rem;
+        }
+
+        .input-label {
+            display: block;
+            font-size: 0.85rem;
+            color: #fb923c;
+            margin-bottom: 0.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .calc-input, .calc-select {
+            width: 100%;
+            height: 48px;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-size: 1rem;
+            font-weight: 800;
+            padding: 0 0.8rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .calc-input:focus, .calc-select:focus { border-color: #f97316; }
+
+        .sem-row {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr 40px;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .del-btn {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 8px;
+            height: 48px;
+            width: 40px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+        .del-btn:hover { background: #ef4444; color: #fff; }
+
+        .add-row-btn {
+            background: var(--input-bg);
+            color: #f97316;
+            border: 1px dashed var(--accent);
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-weight: 900;
+            cursor: pointer;
+            margin-bottom: 1.2rem;
+            transition: all 0.2s;
+        }
+        .add-row-btn:hover { background: rgba(249, 115, 22, 0.15); }
+
+        .result-card {
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.2rem;
+            text-align: center;
+            margin-bottom: 1.2rem;
+        }
+        .result-amount {
+            font-size: 2rem;
+            color: #f97316;
+            font-weight: 900;
+            word-break: break-all;
+        }
+        .result-details {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            margin-top: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .result-details span { display: flex; justify-content: space-between; }
+
+        .calc-btn-compute {
+            width: 100%;
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 900;
+            padding: 0.9rem 0;
+            cursor: pointer;
+            min-height: 48px;
+            transition: opacity 0.2s, transform 0.1s;
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4);
+        }
+        .calc-btn-compute:hover { opacity: 0.95; }
+        .calc-btn-compute:active { transform: scale(0.98); }
+
+        .action-btns {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+            margin-top: 1.2rem;
+        }
+        .action-btn {
+            background: var(--input-bg);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-weight: 900;
+            cursor: pointer;
+            min-height: 48px;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .action-btn:hover { background: #f97316; color: #fff; }
+
+        .seo-section {
+            margin-top: 3rem;
+            background: var(--box-bg);
+            border: 1px solid var(--border-color);
+            padding: 1.8rem;
+            border-radius: 16px;
+        }
+        .seo-section h3 { color: #f97316; text-align: left; margin-top: 1.2rem; margin-bottom: 0.5rem; font-size: 1.1rem; }
+        .seo-section p { font-size: 0.88rem; color: #cbd5e1; font-weight: 700; margin-bottom: 1rem; line-height: 1.7; }
+        .light-theme .seo-section p { color: #334155; }
+        .faq-item { margin-bottom: 1.2rem; }
+        .faq-question { color: #fed7aa; font-weight: 900; font-size: 0.95rem; margin-bottom: 0.3rem; }
+        .light-theme .faq-question { color: #9a3412; }
+        .faq-answer { color: #cbd5e1; font-weight: 700; font-size: 0.85rem; }
+        .light-theme .faq-answer { color: #475569; }
+
+        .related-tools {
+            margin-top: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+        }
+        .tool-link-card {
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            padding: 0.8rem;
+            border-radius: 8px;
+            text-align: center;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 800;
+            transition: 0.2s;
+        }
+        .tool-link-card:hover { background: #f97316; color: #fff; border-color: #f97316; }
+
+        .page-action-footer-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .big-footer-btn {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4);
+            min-height: 48px;
+            display: inline-flex;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+        .big-footer-btn:hover { transform: translateY(-2px); }
+        .big-footer-btn.alt {
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+        }
+
+        footer { 
+            text-align: center; 
+            padding: 2.5rem 1rem 2rem 1rem; 
+            background: var(--box-bg); 
+            color: #94a3b8; 
+            margin-top: 4rem; 
+            font-weight: 800; 
+            border-top: 1px solid var(--border-color); 
+            font-size: 0.9rem; 
+        }
+        .footer-divider { width: 60px; height: 3px; background: #f97316; margin: 0 auto 1.2rem auto; border-radius: 2px; }
+        .footer-links { margin-bottom: 1rem; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .footer-links a { color: #fed7aa; text-decoration: none; font-weight: 800; font-size: 1rem; min-height: 48px; display: flex; align-items: center; }
+        .light-theme .footer-links a { color: #475569; }
+        .footer-links a:hover { color: #f97316; text-decoration: underline; }
+
+        .print-header { display: none; }
+
+        @media print {
+            body { background: #fff !important; color: #000 !important; }
+            header, .add-row-btn, .del-btn, .calc-btn-compute, .action-btns, footer, .seo-section { display: none !important; }
+            .print-header { display: block !important; text-align: center; margin-bottom: 2rem; border-bottom: 2px solid #f97316; padding-bottom: 1rem; }
+            .print-header h1 { font-size: 22px; color: #f97316; font-weight: 900; }
+            .print-header p { font-size: 12px; color: #555; font-weight: 800; }
+            .calc-box { background: none !important; border: none !important; box-shadow: none !important; padding: 0 !important; }
+            .calc-input { border: 1px solid #ccc !important; background: #fdfdfd !important; color: #000 !important; }
+            .result-card { border: 1px solid #f97316 !important; background: #fff !important; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">PDFGridBox Calc</a>
+            <div class="nav-right">
+                <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme">🌓 Theme</button>
+                <a href="https://pdfgridbox.in" class="nav-link pdf-tools-btn" target="_blank">PDF Tools</a>
+                <a href="index.html" class="nav-link">Home</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="hero">
+            <h1>CGPA Calculator</h1>
+            <div class="hero-sub">Semester & Subject CGPA &bull; Credit Weightage &bull; Percentage Converter</div>
+        </div>
+
+        <div class="calc-box">
+            <div class="print-header">
+                <h1>PDFGridBox - CGPA Calculation Report</h1>
+                <p>Official Academic Output (pdfgridbox.in)</p>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label" for="conversionScale">Percentage Formula Scale</label>
+                <select id="conversionScale" class="calc-select" onchange="calculateCGPA()">
+                    <option value="9.5" selected>CBSE / Standard (CGPA × 9.5)</option>
+                    <option value="10">10 Scale (CGPA × 10)</option>
+                </select>
+            </div>
+
+            <div class="sem-row" style="margin-bottom: 0.4rem;">
+                <span class="input-label" style="margin:0;">Semester/Subject</span>
+                <span class="input-label" style="margin:0;">GPA / Grade (0-10)</span>
+                <span class="input-label" style="margin:0;">Credits</span>
+                <span></span>
+            </div>
+
+            <div id="rowsContainer">
+                <!-- Dynamic Rows Added by JS -->
+            </div>
+
+            <button type="button" class="add-row-btn" onclick="addRow()">+ Add Semester / Subject</button>
+
+            <div class="result-card">
+                <div class="result-amount" id="cgpaDisplay">0.00 CGPA</div>
+                <div style="font-size: 0.85rem; color: #fb923c; margin-top: 2px;" id="percentageDisplay">Equivalent Percentage: 0.00%</div>
+                <div class="result-details" id="cgpaDetails">
+                    <span><span>Total Earned Credits:</span><b id="detailCredits">0</b></span>
+                    <span><span>Total Grade Points:</span><b id="detailGradePoints">0</b></span>
+                    <span><span>Performance Rating:</span><b id="detailRating">--</b></span>
+                </div>
+            </div>
+
+            <button class="calc-btn-compute" onclick="calculateCGPA()">Calculate CGPA</button>
+
+            <div class="action-btns">
+                <button class="action-btn" onclick="window.print()">📥 Print / PDF</button>
+                <button class="action-btn" onclick="shareResult()">🔗 Share Result</button>
+            </div>
+        </div>
+
+        <!-- SEO & FAQ Section -->
+        <div class="seo-section">
+            <h3>Global CGPA Calculator & Percentage Converter</h3>
+            <p>Calculate your cumulative grade point average (CGPA) accurately for school, college, and university courses. Effortlessly convert CGPA to percentage according to CBSE and university guidelines.</p>
+
+            <h3>Frequently Asked Questions (FAQs)</h3>
+            <div class="faq-item">
+                <div class="faq-question">How is CGPA converted into percentage?</div>
+                <div class="faq-answer">For CBSE and most Indian universities, multiply your CGPA by 9.5 to get the equivalent percentage (Percentage = CGPA × 9.5).</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How does credit weightage affect CGPA?</div>
+                <div class="faq-answer">Courses with higher credit hours have a larger impact on your overall CGPA. Weighted CGPA = Total (Grade Point × Credit) / Total Credits.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Is this CGPA Calculator free to use?</div>
+                <div class="faq-answer">Yes, our calculator is 100% free, fully responsive, and works for unlimited semesters and subjects.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Can I print or save my CGPA result as a PDF?</div>
+                <div class="faq-answer">Yes, click on the 'Print / PDF' button to generate an official academic summary report.</div>
+            </div>
+
+            <h3>Related Financial & Utility Calculators</h3>
+            <div class="related-tools">
+                <a href="income-tax.html" class="tool-link-card">Income Tax Calculator</a>
+                <a href="currency.html" class="tool-link-card">Currency Converter</a>
+                <a href="scientific.html" class="tool-link-card">Scientific Calculator</a>
+                <a href="https://pdfgridbox.in" class="tool-link-card" target="_blank">PDF Tools & Converters</a>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="footer-divider"></div>
+        
+        <div class="page-action-footer-buttons">
+            <a href="index.html" class="big-footer-btn alt">&larr; Back to Home</a>
+            <a href="https://pdfgridbox.in" class="big-footer-btn" target="_blank">PDF Tools (pdfgridbox.in) &rarr;</a>
+        </div>
+
+        <div class="footer-links">
+            <a href="about.html">About Us</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact-us.html">Contact Us</a>
+        </div>
+        <p>&copy; 2026 PDFGridBox. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let rowCount = 0;
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+        }
+
+        function addRow(gpa = '', credit = 1) {
+            rowCount++;
+            let container = document.getElementById('rowsContainer');
+            let div = document.createElement('div');
+            div.className = 'sem-row';
+            div.id = `row-${rowCount}`;
+            div.innerHTML = `
+                <input type="text" class="calc-input sem-name" value="Sem / Sub ${rowCount}" placeholder="Name">
+                <input type="number" class="calc-input sem-gpa" value="${gpa}" min="0" max="10" step="0.01" placeholder="GPA" oninput="calculateCGPA()">
+                <input type="number" class="calc-input sem-credit" value="${credit}" min="0.5" step="0.5" placeholder="Credit" oninput="calculateCGPA()">
+                <button type="button" class="del-btn" onclick="removeRow('${rowCount}')" title="Delete Row">✕</button>
+            `;
+            container.appendChild(div);
+            calculateCGPA();
+        }
+
+        function removeRow(id) {
+            let row = document.getElementById(`row-${id}`);
+            if (row) {
+                row.remove();
+                calculateCGPA();
+            }
+        }
+
+        function calculateCGPA() {
+            let gpaInputs = document.querySelectorAll('.sem-gpa');
+            let creditInputs = document.querySelectorAll('.sem-credit');
+            let scale = parseFloat(document.getElementById('conversionScale').value) || 9.5;
+
+            let totalPoints = 0;
+            let totalCredits = 0;
+            let validCount = 0;
+
+            for (let i = 0; i < gpaInputs.length; i++) {
+                let gpa = parseFloat(gpaInputs[i].value);
+                let credit = parseFloat(creditInputs[i].value) || 1;
+
+                if (!isNaN(gpa) && gpa >= 0) {
+                    totalPoints += (gpa * credit);
+                    totalCredits += credit;
+                    validCount++;
+                }
+            }
+
+            let cgpa = totalCredits > 0 ? (totalPoints / totalCredits) : 0;
+            let percentage = cgpa * scale;
+
+            let rating = "--";
+            if (cgpa >= 9.0) rating = "Outstanding (O)";
+            else if (cgpa >= 8.0) rating = "Excellent (A+)";
+            else if (cgpa >= 7.0) rating = "Very Good (A)";
+            else if (cgpa >= 6.0) rating = "Good (B+)";
+            else if (cgpa >= 5.0) rating = "Above Average (B)";
+            else if (cgpa > 0) rating = "Needs Improvement";
+
+            document.getElementById('cgpaDisplay').innerText = `${cgpa.toFixed(2)} CGPA`;
+            document.getElementById('percentageDisplay').innerText = `Equivalent Percentage: ${percentage.toFixed(2)}%`;
+            document.getElementById('detailCredits').innerText = totalCredits.toFixed(1);
+            document.getElementById('detailGradePoints').innerText = totalPoints.toFixed(2);
+            document.getElementById('detailRating').innerText = rating;
+        }
+
+        function shareResult() {
+            let cgpaVal = document.getElementById('cgpaDisplay').innerText;
+            if (navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    text: `My calculated CGPA result is: ${cgpaVal}`,
+                    url: window.location.href
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    alert('CGPA Calculator link copied to clipboard!');
+                });
+            }
+        }
+
+        // Initialize with default 4 semesters on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            addRow('8.5', 20);
+            addRow('8.2', 20);
+            addRow('8.8', 22);
+            addRow('9.0', 22);
+        });
+    </script>
+</body>
+</html>
